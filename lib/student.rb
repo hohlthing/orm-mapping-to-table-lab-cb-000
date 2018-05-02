@@ -26,6 +26,13 @@ class Student
   def self.drop_table
     DB[:conn].execute("DROP TABLE IF EXISTS students;")
   end
-  
+
+  def save
+  end
+
+  def self.create(name, grade)
+    self.new(name, grade).save
+  end
+
 
 end
