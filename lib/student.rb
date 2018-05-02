@@ -28,12 +28,12 @@ class Student
   end
 
   def save
+    DB[:conn].execute("INSERT INTO students (name, grade) VALUES (?, ?)", @name, @grade)
+    @id = DB[:conn].execute("SELECT id FROM students WHERE name = (?)", @name)[0][0]
   end
 
   def self.create(name, grade)
-    student = self.new(name, grade)
-    student.save
-    student
+    self.new(name, grade).save
   end
 
 
